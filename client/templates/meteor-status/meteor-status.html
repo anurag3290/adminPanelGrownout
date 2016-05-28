@@ -1,0 +1,9 @@
+<template name="meteorStatus">
+	{{#if show}}
+		{{#if isStyled}}
+			<div class="meteor-status {{position}}">{{{langDisconnected}}}{{#if showLink}} <a class="meteor-status-retry" style="cursor:pointer">{{langRetryLink}}</a>{{/if}}</div>
+		{{else}}
+			{{{langDisconnected}}}{{#if showLink}} <a class="meteor-status-retry" style="cursor:pointer">{{langRetryLink}}</a>{{/if}}
+		{{/if}}
+	{{/if}}
+</template>

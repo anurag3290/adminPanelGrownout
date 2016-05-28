@@ -1,0 +1,63 @@
+<template name="saas_type1">
+	<div class="modal fade saas_type1">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Saas Type</h4>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<form>
+							<div class="col-sm-6">
+								<input type="radio" name="saas" class="saasCompany1" value="saasCompany">Company
+							</div>
+							<div class="col-sm-6">
+								<input type="radio" name="saas" class="saasConsultant1" value="saasConsultant">Consultant
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-body">
+					<form role="form" id="recruiterCount">
+				 	 	<div class="form-group">
+							<label for="email">Recruiter Count:</label>
+							<input type="text" class="form-control recruiterCountXs">
+						</div>
+					</form>
+
+					<form role="form" id="jobCount">
+				 	 	<div class="form-group">
+							<label for="email">Job Count:</label>
+							<input type="text" class="form-control jobCountXs">
+						</div>
+					</form>
+
+					<form role="form" id="validity">
+				 	 	<div class="form-group">
+							<label for="email">Valid for(No. of days):</label>
+							<input type="text" class="form-control validityXs">
+						</div>
+					</form>
+
+
+					<form role="form" class="companyIdForm1">
+				 	 	<div class="form-group">
+							<label for="email">Company Id:</label>
+							<input type="text" class="form-control companyIdSaas1">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer" id = "showButton1">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary saasType1">Activate</button>
+				</div>
+				<div class="modal-footer" id = "showLoader1" style="display:none">
+					<div class="preloader" style="height: 0px; margin-bottom: -210px;">
+						<img src="images/logginPageLoader.GIF" style="margin-top: -239px;">
+					</div>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</template>

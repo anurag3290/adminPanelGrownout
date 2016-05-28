@@ -1,0 +1,126 @@
+<template name="recruiterdetail">
+	<div id="wrapper">
+		{{> navbar}}
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<!-- Page Heading -->
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">
+							Recruiters (<i>{{compName}}</i>)
+								<div class="pull-right" style="width: 34%">
+									<div class="row">
+										<div class="searchbyname col-sm-8 NoPaddingRight" style="float: right">
+											<div class="input-group stylish-input-group">
+												<input type="text" class="form-control searchEvent inputType" placeholder="Search" id="searchProfile">
+												<span class="input-group-addon">
+													<span class="fa fa-search"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+						</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Recruiter List</h3>
+							</div>
+							<div class="tab-body">
+								<div class="table-responsive">
+									<table class="table table-bordered table-hover table-striped">
+										<thead>
+											<tr>
+												<th>Recruiter Name</th>
+												<th>Designation</th>
+												<th>Email Address</th>
+												<th>Location</th>
+												<th>Last Login</th>
+												<th>No of Login</th>
+												{{#if checkUserType}}
+													<th>Login</th>
+												{{/if}}
+											</tr>
+										</thead>
+										<tbody id ="recdetailTable">
+											{{#each recDetail}}
+												<tr>
+													{{#if checkAdminType}}
+														<td>{{name}}</td>
+													{{else}}
+														<td>{{name}} (Admin)</td>
+													{{/if}}
+													<td class="customWrap"><p>{{designation}}</p></td>
+													<td>{{emailAddress}}</td>
+
+													{{#if location.country}}
+														{{#if location.city}}
+															<td>{{location.city}},{{location.country}}</td>
+														{{else}}
+															<td>India</td>
+														{{/if}}
+													{{else}}
+														<td>India</td>
+													{{/if}}
+
+													{{#if checkPassword}}
+														{{#if checkStatus}}
+															<td>{{momentDate lastLogin}}</td>
+														{{else}}
+															<td>--</td>
+														{{/if}}
+													{{else}}
+														<td>--</td>
+													{{/if}}
+
+													{{#if checkPassword}}
+														{{#if checkStatus}}
+															{{#if analytics}}
+																<td>{{analytics.numberLogins}}</td>
+															{{/if}}
+														{{else}}
+															<td>--</td>
+														{{/if}}
+													{{else}}
+														<td>--</td>
+													{{/if}}
+
+
+													{{#if checkPassword}}
+														{{#if checkStatus}}
+															{{#if checkUserType}}
+																<td>
+																	{{#if mailSentAlready}}
+																		<button type="button" class="btn btn-primary buttonCol activationMail">Activation Mail</button>
+																	{{/if}}
+																	<button type="button" class="btn btn-primary buttonCol login">Login</button>
+																</td>
+															{{else}}
+																<td>--</td>
+															{{/if}}
+														{{else}}
+															<td>Deactivated</td>
+														{{/if}}
+													{{else}}
+														<td>Password not generated</td>
+													{{/if}}
+
+													{{> recruiterdetail_modal}}
+												</tr>
+											{{/each}}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+</template>

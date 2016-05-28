@@ -1,0 +1,15 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "handlebar-bind": {}
+    },
+    "packages": {
+      "handlebar-bind": {
+        "git": "https://github.com/raix/Meteor-handlebar-bind.git",
+        "tag": "v0.0.1",
+        "commit": "5dad52f10c53c3c322406432ab18531904a17213"
+      }
+    }
+  }
+}

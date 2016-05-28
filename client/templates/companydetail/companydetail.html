@@ -1,0 +1,150 @@
+<template name="companydetail">
+	<div id="wrapper">
+		<!-- Navigation -->
+		{{> navbar}}
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<!-- Page Heading -->
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="pull-left">
+							{{compName}}  <span class="green">Active</span>
+						</h1>
+						<div class="pull-right emailSec">
+							<span class="adminEmail">Email: {{compEmail}}</span>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+				<div class="row companyDetailPage">
+					<div class="col-sm-12">
+						<div class="panel panel-default">
+							<div class="row tab-body">
+								<div class="col-sm-8">
+									<div class="row">
+										<div class="col-lg-4 col-md-6">
+											<div class="panel panel-yellow">
+												<div class="panel-heading">
+													<div class="row">
+														<div class="col-xs-3">
+															<i class="fa fa-tasks fa-2x"></i>
+														</div>
+														<div class="col-xs-9 text-right">
+															{{#if compTotalJobs}}
+																<div class="huge">{{compTotalJobs}}</div>
+															{{else}}
+																<div class="huge">0</div>
+															{{/if}}
+																<div>Total Job(s)</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-6">
+											<div class="panel panel-green">
+												<div class="panel-heading">
+													<div class="row">
+														<div class="col-xs-3">
+															<i class="fa fa-tasks fa-2x"></i>
+														</div>
+														<div class="col-xs-9 text-right">
+															{{#if compOpenJobs}}
+																<div class="huge">{{compOpenJobs}}</div>
+															{{else}}
+																<div class="huge">0</div>
+															{{/if}}
+																<div>Open Job(s)</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-6">
+											<div class="panel panel-primary">
+												<div class="panel-heading">
+													<div class="row">
+														<div class="col-xs-3">
+															<i class="fa fa-tasks fa-2x"></i>
+														</div>
+														<div class="col-xs-9 text-right">
+															{{#if compClosedJobs}}
+																<div class="huge">{{compClosedJobs}}</div>
+															{{else}}
+																<div class="huge">0</div>
+															{{/if}}
+																<div>Closed Job(s)</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<h4>Company Details</h4>
+									<div class="row compantDv">
+										<div class="col-sm-3">Company Size </div>
+										<div class="col-sm-9">{{compSize}}</div>
+									</div>
+									<div class="row compantDv">
+										<div class="col-sm-3">Company URL </div>
+										<div class="col-sm-9">{{compUrl}}</div>
+									</div>
+									<div class="row compantDv">
+										<div class="col-sm-3">Contact No.</div>
+										<div class="col-sm-9">{{compPhone}}</div>
+									</div>
+									<div class="row compantDv">
+										<div class="col-sm-3">Company Description </div>
+										<div class="col-sm-9">{{compDesc}}</div>
+									</div>
+									{{#if chkUpldLogoPerm}}
+										<!-- <h4>Upload</h4> -->
+										<div class="row">
+											<form>
+												<div class="col-sm-6 uploadlogo">
+													<div class="upload-logo">
+														<div class="input-group">
+															<span class="input-group-btn">
+<!-- 																<span class="btn btn-primary btn-file">
+																		Browse <input type="file" id="imgInp" >
+																</span> -->
+															</span>
+															<!-- <input type="text" class="form-control" id="imgPath" readonly> -->
+														</div>
+													</div>
+												</div>
+<!-- 												<div class="col-sm-6 uploadCompanyLogo"><input type="button" name="submit" value="Upload" class="btn btn-warning btn-file "></div> -->
+											</form>
+										</div>
+									{{/if}}
+									<div class="row">
+										<div class="col-sm-6" id="updateCompanyNetwork"><input type="button" name="updateCompanyNetwork" value="Update Network" class="btn btn-warning btn-file "></div>
+										{{#if canPopEmails}}
+											<div class="col-sm-6" id="updateEmails"><input type="button" name="updateEmails" value="Populate Emails" class="btn btn-warning btn-file "></div>
+										{{/if}}
+									</div>
+								</div>
+								<div class="col-md-offset-1 col-sm-3 logoDv">
+									<div class="logoPreview">
+										<div class="imgSpan">
+											Company Logo
+											{{#if imgSrc}}
+												<img src="{{imgSrc}}" alt="{{compName}}" />
+											{{else}}
+												<img src="images/default_company.png" alt="{{compName}}" />
+											{{/if}}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+	{{> confirm_populate_network}}
+	{{> populate_emails}}
+</template>

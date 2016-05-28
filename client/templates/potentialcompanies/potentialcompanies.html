@@ -1,0 +1,237 @@
+<template name="potentialcompanies">
+	<div id="wrapper">
+		{{> navbar}}
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<!-- Page Heading -->
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">
+							Potential Companies
+							<div class="pull-right" style="width: 34%">
+								<div class="row">
+									<ul id="sortable">
+									  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Attrition Rate</li>
+									  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Min. Tech Employees</li>
+									  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Last year hired</li>
+									  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>No. of Hiring</li>
+									  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Company Size</li>
+									</ul>
+									<div class="col-sm-4">
+									  	<div class="pull-right buttons">
+									    	<button class="btn btn-primary priority">Prioritize Filters</button>
+									  	</div>
+									</div>
+									<div class="searchbyname col-sm-8 NoPaddingRight" style="float: right">
+										<div class="input-group stylish-input-group">
+											<input type="text" class="form-control searchEvent inputType" placeholder="Search" id="searchProfile">
+											<span class="input-group-addon">
+												<span class="fa fa-search"></span>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="col-sm-2 noPaddingLeft">
+							<div class="form-group">
+								<label for="sel1">Attrition Rate:</label>
+								<div class="col-sm-6 NoPaddingLeft">
+									<input class="form-control" id="attrition-min" placeholder="min">
+								</div>
+								<div class="col-sm-6 NoPaddingRight">
+									<input class="form-control" id="attrition-max" placeholder="max">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="form-group">
+								<label for="sel2">Min. Tech Employees:</label>
+								<div class="col-sm-12 NoPaddingRight">
+									<input class="form-control" id="techemp-min" placeholder="min">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="form-group">
+								<label for="headqrtrs">Headquarters:</label>
+								<select class="form-control" id="headqrtrs">
+									<option value="">Select</option>
+									{{#each allCities}}
+							    	<option value="{{this}}">{{this}}</option>
+							    {{/each}}
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-2 ">
+							<div class="form-group">
+								<label for="sel4">No. of Hiring:</label>
+								<div class="col-sm-6 NoPaddingLeft">
+									<input class="form-control" id="hiring-min" placeholder="min">
+								</div>
+								<div class="col-sm-6 NoPaddingRight">
+									<input class="form-control" id="hiring-max" placeholder="max">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2 noPaddingRight">
+							<div class="form-group">
+								<label for="industryType">Industry:</label>
+								<select class="form-control" id="industryType">
+									<option value="">Select</option>
+									{{#each industryFacets}}
+							    	<option value="{{this}}">{{this}}</option>
+							    {{/each}}
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-2 ">
+							<div class="form-group">
+								<label for="sel4">Company Size:</label>
+								<div class="col-sm-6 NoPaddingLeft">
+									<input class="form-control" id="CompanySize-min" placeholder="min">
+								</div>
+								<div class="col-sm-6 NoPaddingRight">
+									<input class="form-control" id="CompanySize-max" placeholder="max">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-sm-6"><h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Companies list ({{resultCount}})</h3></div>
+									<div class="col-sm-6">
+								  	<div class="pull-right buttons">
+								  		<button class="btn btn-success filter">Apply Filter</button>
+								  		<button class="btn btn-success ref">Refresh</button>
+								    	<button class="btn btn-primary inc">Download Excel File</button>
+								  	</div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-body">
+								<div class="table-responsive">
+									<table class="table table-bordered table-hover table-striped">
+										<thead>
+											<tr>
+												<th>Company Name</th>
+												<th>Industry</th>
+												<th>Headquarters</th>
+												<th>Predicted Headquarter</th>
+												<th>Total Employee</th>
+												<th>Locations wise Employees</th>
+												<th>Last Year Hiring</th>
+												<th>Total Jobs</th>
+											</tr>
+										</thead>
+										<tbody id = "comTable">
+											{{#each company}}
+												<tr>
+													
+													<td>{{_source.name}}</td>
+
+													{{#if _source.industry}}
+														<td>{{_source.industry}}</td>
+													{{else}}
+														<td>--</td>
+													{{/if}}
+
+													{{#if _source.headquarters}}
+														<td>{{_source.headquarters}}</td>
+													{{else}}
+														<td>--</td>
+													{{/if}}
+
+													{{#if _source.headquarter_predicted}}
+														<td>{{_source.headquarter_predicted}}</td>
+													{{else}}
+														<td>--</td>
+													{{/if}}
+
+													{{#if _source.people_count}}
+														<td>{{_source.people_count}}</td>
+													{{else}}
+														<td>0</td>
+													{{/if}}
+
+													{{#if locationCount}}
+														<td><a href><button class="locationCount">{{locationCount}}</button></a></td>
+													{{else}}
+														<td>0</td>
+													{{/if}}
+
+													{{#if _source.last_year_hired}}
+														<td>{{_source.last_year_hired}}</td>
+													{{else}}
+														<td>0</td>
+													{{/if}}
+
+													{{#if _source.total_job}}
+														<td>{{_source.total_job}}</td>
+													{{else}}
+														<td>--</td>
+													{{/if}}
+
+													<td>
+
+														{{#if preMeeting}}
+															<a href="{{pathFor 'preMeeting'}}?company={{preMeetingCompanyId}}&companyName={{companyName}}" class="btn btn-info buttonCol preMeeting">Pre Meeting</a>
+														{{else}}
+															<button type="button" class="btn btn-info buttonCol noPreMeeting">Pre Meeting</button>
+														{{/if}}
+														
+														<a href><button type="button" class="btn btn-primary buttonCol openDecisionMakers" style="margin-top: 5px;">	Decision Makers
+														</button></a>
+													</td>
+												</tr>
+											{{else}}
+												<tr>
+													<td colspan="8">
+														<div class="preloader">
+															<img src="images/logginPageLoader.GIF">
+														</div>
+													</td>
+												</tr>
+											{{/each}}
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<div class="row">
+    						<div class="col-sm-12">
+  								<div class="col-sm-5">
+										<button><i class="fa fa-chevron-left fa-x"></i></button>
+									</div>
+									<div class="col-sm-2">
+										<div class="pull-center" id="pageNo" style="text-align:center; font-size: x-large;">
+											<i>1</i>
+										</div>
+									</div>
+									<div class="col-sm-5">
+										<div class="pull-right">
+											<button><i class="fa fa-chevron-right fa-x"></i></button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+	{{> decisionMakers}}
+	{{> locationCountModal}}
+</template>

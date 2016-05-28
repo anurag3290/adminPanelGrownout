@@ -1,0 +1,83 @@
+<template name="userspermission">
+	<div id="wrapper">
+		{{> navbar}}
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<!-- Page Heading -->
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">
+							Users Permission
+						</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Users Permission</h3>
+							</div>
+							<div class="tab-body">
+								<div class="table-responsive">
+									{{#if usersperm}}
+										<table class="table table-bordered table-hover table-striped">
+											<thead>
+													<tr>
+														<th>Name</th>
+														<th>EmailAddress</th>
+														<th>Upload Logo</th>
+														<th>Login</th>
+														<th>Populate Emails</th>
+														<th></th>
+													</tr>
+											</thead>
+											<tbody>
+												{{#each usersperm}}
+													<tr class='permList'>
+												<!-- <!		<td>S. No.</td> -->
+														{{#if checkAdmin}}
+															<td>{{name}}</td>
+														{{else}}
+															<td>{{name}} (ADMIN)</td>
+														{{/if}}
+															<td>{{emailAddress}}</td>
+
+														{{#if uploadLogo}}
+															<td><input class="uploadLogo" type="checkbox" name="uploadLogo" checked></td>
+														{{else}}
+															<td><input class="uploadLogo" type="checkbox" name="uploadLogo"></td>
+														{{/if}}
+
+														{{#if loginStatus}}
+															<td><input class="canLogin" type="checkbox" name="canLogin" checked></td>
+														{{else}}
+															<td><input class="canLogin" type="checkbox" name="canLogin"></td>
+														{{/if}}
+														
+														{{#if populateEmails}}
+															<td><input class="canPopEmails" type="checkbox" name="canPopEmails" checked></td>
+														{{else}}
+															<td><input class="canPopEmails" type="checkbox" name="canPopEmails"></td>
+														{{/if}}
+
+														<td><input class="btn btn-info submit" type="submit" /> </td> 
+													</tr>
+												{{/each}} 
+											</tbody>
+										</table>
+									{{else}}
+										<div class="preloader">
+											<img src="images/logginPageLoader.GIF">
+										</div>
+									{{/if}}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+</template>

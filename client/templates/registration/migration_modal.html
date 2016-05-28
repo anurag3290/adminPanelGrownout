@@ -1,0 +1,36 @@
+<template name="migration_modal">
+	<div class="modal fade migration_modal" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+					<h4 class="modal-title">Production Migration</h4>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<form>
+							<div class="col-sm-6">
+								<input type="radio" name="saas" class="saasMigrate" value="saasMigrate">SAAS
+							</div>
+							<div class="col-sm-6">
+								<input type="radio" name="saas" class="xsMigrate" value="xsMigrate">NON-SAAS
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-body">
+					<form role="form">
+				 	 	<div class="form-group">
+							<label for="email">Company website url:</label>
+							<input type="text" class="form-control websiteUrl" name="companyurl">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer" id="showButton3">
+					<button type="button" class="btn btn-default closeButton" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary upgradeRegistration">Upgrade</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</template>

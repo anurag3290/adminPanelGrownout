@@ -1,0 +1,205 @@
+<template name="preMeeting">
+	<div id="wrapper">
+		{{> navbar}}
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<!-- Page Heading -->
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">
+							Pre-Meeting Info-Graph({{companyName}})
+						</h1>
+					</div>
+				</div>
+				<!-- /.row -->
+				<div class="row">
+					<div class="col-sm-12 totalNoEmp">
+						 <form class="form-inline" role="form">
+							<div class="form-group">
+								<label for="noofEmp">Total No. Employee</label>
+								<input type="text" class="form-control" id="noofEmp" value="2000">
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</div>
+					<div class="col-sm-12" id="firstGraph">
+						<div class="InfoGraphDetail">
+							<div class="row">
+								<div class="col-sm-5">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="panel panel-green onecolor">
+												<div class="panel-heading">
+													<div class="row">
+														<div class="col-xs-12 text-center">
+															<div class="huge headingCol">Strengths </div>
+															<div class="huge countNo" id="strength">{{totalEmployees}}</div>
+															<div class="arrow"><i class="fa fa-arrow-down fa-3x"></i></div>
+															<div class="huge headingCol">Their Network</div>
+															<div class="huge countNo">{{network}}+</div>
+														</div>
+														<!-- <div class="col-xs-3">
+															<i class="fa fa-cog fa-5x"></i>
+														</div> -->
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="panel panel-green twocolor">
+												<div class="panel-heading">
+													<div class="row">
+														<div class="col-xs-12 text-center">
+															<div class="huge headingCol">Came  In </div>
+															<div class="huge countNo" id="cameIn">{{cameIn}}</div>
+															<div class="line-break"></div>
+															<div class="huge headingCol">Gone Out</div>
+															<div class="huge countNo">{{goneOut}}</div>
+														</div>
+														<!-- <div class="col-xs-3">
+															<i class="fa fa-cog fa-5x"></i>
+														</div> -->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+									<div class="col-sm-5 col-sm-offset-2">
+										<h3 class="headingGraph">Attrition analytics for last year</h3>
+										{{#if attritionGraphLoader}}
+											<div id="columnchart_values" style="position: relative; left:-40px;">{{attritionGraph}}</div>
+										{{else}}
+											<div class="preloader" style="margin-top: 100px; padding-bottom: 25px ">
+												<img src="images/logginPageLoader.GIF">
+											</div>
+										{{/if}}
+									</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Top Skills</h3>
+										<!-- <a class="panel-title backTopSkills" style="float :right"> Back</a></h3> -->
+									</div>
+									<form class="skillForm">
+										<div class="panel-body">
+											
+											{{#if mySkills}}
+												<select id="my-skill" multiple="multiple">
+													{{#each mySkills}}
+														<option value={{this.key}} class="skillsSelected">{{this.key}} [{{this.doc_count}}] </option>
+													{{/each}}
+												</select>
+											{{else}}
+												<div class="preloader" style="margin-top: 50px; padding-bottom: 50px">
+													<img src="images/logginPageLoader.GIF">
+												</div>
+											{{/if}}
+											
+										</div>
+										<div class="panel-footer">
+											<div class="text-right">
+												<a class="btn btn-primary processSkill">Process</a>
+											</div>
+										</div>
+									</form>
+									<div class="col-sm-12" id="skillCloud"></div>
+								</div>
+							</div>
+							<form name="companyCloud">
+								<div class="col-sm-6">
+									<div class="row">
+										<div class="panel panel-info CompanyPanel">
+											<div>
+												<div class = "row">
+													<div class="col-sm-6">
+														<div class="panel-heading">
+															<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Employees Coming From</h3>
+														</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="panel-heading">
+															<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Employees Going To</h3>
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="panel-body">
+														{{#if topIncomingCompanies}}
+															<select id="comingFrom" multiple="multiple">
+																{{#each topIncomingCompanies}}
+																	<option value={{name}} class="fromSelected">{{name}} [{{value}}]</option>
+																{{/each}}
+															</select>
+														{{else}}
+															<div class="preloader" style="margin-top: 25px; padding-bottom: 25px">
+																<img src="images/logginPageLoader.GIF">
+															</div>
+														{{/if}}
+
+														<div id="comingFromCloud"></div>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="panel-body">
+														{{#if topOutgoingCompanies}}
+															<select id="goingFrom" multiple="multiple">
+																{{#each topOutgoingCompanies}}
+																	<option value={{name}} class="toSelected">{{name}} [{{value}}]</option>
+																{{/each}}
+															</select>
+														{{else}}
+															<div class="preloader" style="margin-top: 25px; padding-bottom: 25px">
+																<img src="images/logginPageLoader.GIF">
+															</div>
+														{{/if}}
+
+													<div id="goingToCloud"></div>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-12">
+												<div class="panel-footer row">
+													<div class="text-right">
+														<a class="btn btn-primary toFrom">Process</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="col-sm-12" id="secondGraph">
+						<div class="row">
+								<div class="col-sm-6 pieChart">
+									<h3 class="headingGraph">Employee Work Experience</h3>
+									{{#if experienceRangesLoader}}
+											<div id="piechart" style=" height:400px; position:relative; left:-40px;">{{experienceRanges}}</div>
+									{{else}}
+										<div class="preloader" style="margin-top: 100px; padding-bottom: 25px">
+											<img src="images/logginPageLoader.GIF">
+										</div>
+									{{/if}}
+								</div>
+						</div>
+					</div>	
+				</div>
+				
+				<!-- /.row -->
+
+				
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+</template>

@@ -1,0 +1,57 @@
+<template name="changepasswd">
+	<div id="wrapper">
+		{{> navbar}}
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<!-- Page Heading -->
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">
+							Change Password
+						</h1>
+					</div>
+				</div>
+				<div class="pageContent Startpage rowCol">
+					<div class="rowCol jobATS" id="content">
+						<div class="col-sm-12 contentbar">
+							<!-- Tab panes -->
+							<div class="rowCol settings">	
+								<div class="rowCol">
+									<form id='changePasswordForm'>
+										<div class="col-sm-12">
+											<div class="row">		
+												<div class="col-sm-12">
+													<div class="form-group">
+														<label for="">Old Password</label>
+														<input class="form-control" type="password" id="oldPassword" placeholder="Enter old password" minlength="5" maxlength="12">
+													</div>
+												</div>						
+												<div class="col-sm-12">						
+													<div class="form-group">
+														<label for="">New Password</label>
+														<input class="form-control" type="password" id="newPassword" placeholder="Enter new password" minlength="5" maxlength="12">
+													</div>
+												</div>	
+												<div class="col-sm-12">
+													<div class="form-group">
+														<label for="">Confirm Password</label>
+														<input class="form-control" type="Password" id="confirmPassword" placeholder="Re-enter new password" minlength="5" maxlength="12">
+													</div>
+												</div> 
+												<div class="col-sm-12">	                       
+													<div class="submit pull-right">
+														<button type="button" name="save" value="Save" class="btn btn-primary buttonCol oragneColBtn" id="savePassword">Change Password</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
